@@ -27,13 +27,20 @@ class FeatureContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
-        // Initialize your context here
-        // sqlite CREATE TABLE clients (id integer primary key, name text unique not null);
-        // sqlite CREATE TABLE calls (client_from integer not null, client_to integer not null, duration integer not null, cost integer not null);
-        // INSERT INTO clients VALUES (1,'Alfred'), (2, 'Bob'), (3, 'David'), (4, 'Guillaume');
-        // 
-        // 
-        // 
+        if(! file_exists(__DIR__ . '/../../test.db')){
+            $db = new \SQLite3(__DIR__ . '/../../test.db');
+            $db->exec('CREATE TABLE clients (id integer primary key, name text unique not null)');
+            $db->exec('CREATE TABLE calls (client_from integer not null, client_to integer not null, duration integer not null, cost integer not null)');
+            $db->exec('INSERT INTO clients VALUES (1,\'Alice\')');
+            $db->exec('INSERT INTO clients VALUES (2,\'Bob\')');
+            $db->exec('INSERT INTO clients VALUES (3,\'Charle\')');
+            $db->exec('INSERT INTO clients VALUES (4,\'David\')');
+            $db->exec('INSERT INTO calls VALUES (1, 2, 30, 5)');
+            $db->exec('INSERT INTO calls VALUES (1, 4, 30, 5)');
+            $db->exec('INSERT INTO calls VALUES (4, 3, 30, 5)');
+            $db->exec('INSERT INTO calls VALUES (4, 2, 30, 5)');
+            $db->close();
+        }
     }
 
     private $output;
