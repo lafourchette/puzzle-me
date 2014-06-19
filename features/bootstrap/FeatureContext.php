@@ -67,4 +67,29 @@ class FeatureContext extends BehatContext
             );
         }
     }
+
+    /**
+     * @Then /^I should have these lines:$/
+     */
+    public function iShouldHaveTheseLine(PyStringNode $string)
+    {
+        $lines = explode(PHP_EOL, $this->output);
+        $expectedLines = $string->getLines();
+        foreach($expectedLines as $expectedLine){
+            $index = array_search($expectedLine, $lines);
+            if($index === false){
+                throw new Exception(
+                    "Should have line '$expectedLine' in:\n" . $this->output
+                );
+            }
+            $lines[$index] = false;
+        }
+        $remainingLines = array_filter($lines);
+        if(! empty($remainingLines)){
+            throw new Exception(
+                "Got remaining lines:\n" . implode(PHP_EOL, $remainingLines)
+            );
+        }
+    }
+
 }
