@@ -1,7 +1,7 @@
 Feature: LaFourchette Developer test
   SQL tests
 
-Scenario: test3 Basic database access
+Scenario: sql1 Basic database access
 Write a program that return the name of the first client in test.db:clients
 
   Given I have a file named "test.db"
@@ -11,7 +11,7 @@ Write a program that return the name of the first client in test.db:clients
     Alice
     """
 
-Scenario: test4 SQL 1
+Scenario: sql2 Who answer the phone ?
 Write a program that return the name of the clients that have received at least
 one call. It should outputs an entry per line, in the format id;name...
 
@@ -24,7 +24,7 @@ one call. It should outputs an entry per line, in the format id;name...
     3;Charle
     """
 
-Scenario: test5 SQL 1
+Scenario: sql3 Who's asocial ?
 Write a program that return the name of the clients that have NOT received a
 single call. It should outputs an entry per line, in the format id;name...
 
@@ -35,17 +35,7 @@ single call. It should outputs an entry per line, in the format id;name...
     1;Alice
     """
 
-Scenario: test5 SQL 1
-
-Scenario: test8 SQL 1
-Write a program that return the total cost for each clients.
-It should outputs an entry per line, in the format id;cost...
-
-Scenario: test7 SQL 1
-Write a program that return the total cost of all calls fomr the client 4
-It should outputs a single line with an integer
-
-Scenario: test5 SQL 1
+Scenario: sql4 Who's really asocial ?
 Write a program that return the name of the clients that have NOT called
 somebody.
 It should outputs an entry per line, in the format id;name...
@@ -56,3 +46,11 @@ It should outputs an entry per line, in the format id;name...
     """
     1;Alice
     """
+
+Scenario: sql5 Shall we fire David ?
+Write a program that return the total cost of all calls fomr the client 4
+It should outputs a single line with an integer
+
+Scenario: sql6 Who shall we fire ?
+Write a program that return the total cost for each clients.
+It should outputs an entry per line, in the format id;cost...
