@@ -13,7 +13,8 @@ make build
 
 Solve some problems in the src/ folder, and when done use Behat !
 
-'''
+```
 make test
+#or
 bin/behat
-'''
+```
