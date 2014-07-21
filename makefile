@@ -1,8 +1,10 @@
+PHP=`which php`
+
 composer.phar:
-	php -r "readfile('https://getcomposer.org/installer');" | php
+	$(PHP) -r "readfile('https://getcomposer.org/installer');" | $(PHP)
 
 build: composer.phar
-	php composer.phar install --prefer-dist
+	$(PHP) composer.phar install --prefer-dist
 
 test:
 	bin/behat

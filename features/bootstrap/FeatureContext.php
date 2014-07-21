@@ -92,4 +92,35 @@ class FeatureContext extends BehatContext
         }
     }
 
+    /**
+     * @Then /^lines "([^"]*)" shall print "([^"]*)"$/
+     */
+    public function linesShallPrint($arg1, $arg2)
+    {
+        $lines = explode(PHP_EOL, $this->output);
+        $nums = explode(',', $arg1);
+        foreach($nums as $n){
+            $got = $lines[$n - 1];
+            if($got !== $arg2){
+                throw new Exception(sprintf(
+                'Line %s is "%s" instead of "$arg2"',
+                $n, $got
+                ));
+            }
+        }
+    }
+
+    /**
+     * @Given /^shall have (\d+) lines\.$/
+     */
+    public function shallHaveLines($arg1)
+    {
+        $lineCount = count(explode(PHP_EOL, $this->output));
+        if( $lineCount != $arg1 ){
+            throw new Exception(sprintf(
+                "Got %s lines",
+                $lineCount
+                ));
+        }
+    }
 }
