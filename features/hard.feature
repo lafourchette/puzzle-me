@@ -12,3 +12,23 @@ three print “Fizz” instead of the number and for the multiples of five print
   And lines "15,30,45" shall print "FizzBuzz"
   And lines "11" shall print "11"
   And shall have 100 lines.
+
+Scenario: hard2 Something not right
+Mmhh this factory implementation is faulty, can you fix that ?
+
+  When I run "src/hard2.php"
+  Then I should get:
+    """
+    red boom
+    blue boom
+    """
+
+Scenario: hard3 Something not right
+We 
+
+  When I run "src/hard2.php"
+  Then I should get:
+    """
+    red boom
+    blue boom
+    """
