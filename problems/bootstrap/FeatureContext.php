@@ -1,18 +1,8 @@
 <?php
 
-use Behat\Behat\Context\ClosuredContextInterface,
-    Behat\Behat\Context\TranslatedContextInterface,
-    Behat\Behat\Context\BehatContext,
-    Behat\Behat\Exception\PendingException;
-use Behat\Gherkin\Node\PyStringNode,
+use Behat\Behat\Context\BehatContext,
+    Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
-
-//
-// Require 3rd-party libraries here:
-//
-//   require_once 'PHPUnit/Autoload.php';
-//   require_once 'PHPUnit/Framework/Assert/Functions.php';
-//
 
 /**
  * Features context.
@@ -54,7 +44,19 @@ class FeatureContext extends BehatContext
     /** @When /^I run "([^"]*)"$/ */
     public function iRun($command)
     {
+        if(! file_exists($command)){
+            throw new \Behat\Behat\Exception\PendingException("Please create the solution file $command !");
+        }
         exec('php ' . $command, $output);
+        $this->output = trim(implode("\n", $output));
+    }
+
+    /**
+     * @When /^I run "([^"]*)" with parameter "([^"]*)"$/
+     */
+    public function iRunWithParameter($command, $arg2, TableNode $table)
+    {
+        exec("php $command $arg2", $output);
         $this->output = trim(implode("\n", $output));
     }
 

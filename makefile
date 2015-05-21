@@ -1,10 +1,10 @@
-PHP=`which php`
+.DEFAULT_GOAL:=test
 
-composer.phar:
-	$(PHP) -r "readfile('https://getcomposer.org/installer');" | $(PHP)
+vendor:
+	composer install --prefer-dist
 
-build: composer.phar
-	$(PHP) composer.phar install --prefer-dist
-
-test:
+test: vendor
 	bin/behat
+
+score: vendor
+	bin/behat -f progress
