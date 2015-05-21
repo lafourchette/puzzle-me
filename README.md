@@ -16,14 +16,12 @@ Wanna join us ? Go apply on [http://recrutement.lafourchette.com/](http://recrut
 Puzzle-me uses Behat.
 
 ## Installing
-
 Make sure you have composer in your PATH. Then :
 ```
 make vendor
 ```
 
 ## Playing
-
 Have a pick in the features folder, and solve them by writing code in the src.
 ```
 make
